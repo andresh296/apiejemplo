@@ -1,5 +1,6 @@
 package com.ejemplo.exceptions;
 
+import org.hibernate.exception.JDBCConnectionException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -30,8 +31,8 @@ public class BaseController {
     }
 
     @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(DataAccessException.class)
-    public String handleDBExceptions(DataAccessException ex) {
+    @ExceptionHandler(JDBCConnectionException.class)
+    public String handleDBExceptions(JDBCConnectionException ex) {
 
         return "Error en la DB";
     }
