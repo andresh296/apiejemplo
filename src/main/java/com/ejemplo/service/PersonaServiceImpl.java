@@ -1,5 +1,6 @@
 package com.ejemplo.service;
 
+import com.ejemplo.exceptions.ResourceNotFoundException;
 import com.ejemplo.models.Persona;
 import com.ejemplo.repository.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,15 @@ public class PersonaServiceImpl implements PersonaService {
     @Override
     @Transactional
     public Persona save(Persona persona) {
+        return repository.save(persona);
+    }
+
+    @Override
+    public Persona update(Persona persona) {
+        Persona personaDB = this.getById(persona.getId());
+        if (personaDB == null ) {
+            throw new ResourceNotFoundException("La persona con id:" + persona.getId() + " no se encontro");
+        }
         return repository.save(persona);
     }
 }

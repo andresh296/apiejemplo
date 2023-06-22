@@ -37,5 +37,12 @@ public class BaseController {
         return "Error en la DB";
     }
 
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public String handleResourceNotFoundExceptions(ResourceNotFoundException ex) {
+
+        return ex.getMessage();
+    }
+
 
 }

@@ -11,4 +11,6 @@ public interface PersonaService {
     public Persona getById(Long id);
 
     public Persona save(Persona persona);
+
+    public Persona update(Persona persona);
 }

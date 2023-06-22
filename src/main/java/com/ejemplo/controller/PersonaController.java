@@ -38,6 +38,14 @@ public class PersonaController {
         Persona personaDB = service.save(personaRequest.toPersonaModel());
         return new ResponseEntity<Persona>(personaDB, HttpStatus.CREATED);
     }
+
+    @PutMapping("/{id}")
+    public Persona update(@Valid @RequestBody PersonaRequest personaRequest, @PathVariable Long id) {
+        Persona personaUpdate = personaRequest.toPersonaModel();
+        personaUpdate.setId(id);
+
+        return service.update(personaUpdate);
+    }
 }
 
 
